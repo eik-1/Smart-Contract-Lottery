@@ -27,6 +27,13 @@ module.exports = {
             blockConfirmations: 6,
         },
     },
+    gasReporter: {
+        enabled: false,
+        currency: "USD",
+        coinmarketcap: COINMARKET_API,
+        outputFile: "gas-report.txt",
+        noColors: true,
+    },
     namedAccounts: {
         deployer: {
             default: 0,
