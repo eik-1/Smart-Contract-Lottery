@@ -2,9 +2,9 @@
 
 pragma solidity ^0.8.8;
 
-import "@chainlink/contracts/src/v0.8/vrf/VRFConsumerBaseV2.sol";
+import "@chainlink/contracts/src/v0.8/VRFConsumerBaseV2.sol";
 import "@chainlink/contracts/src/v0.8/interfaces/VRFCoordinatorV2Interface.sol";
-import "@chainlink/contracts/src/v0.8/automation/AutomationCompatible.sol";
+import "@chainlink/contracts/src/v0.8/KeeperCompatible.sol";
 
 error Raffle__NotEnoughETHEntered();
 error Raffle__TransferFailed();
@@ -17,7 +17,7 @@ error Raffle__UpkeepNotNeeded(uint256 currentBalance, uint256 numPlayers, uint25
  * @notice This contract is for creating is untamperable decentralized smart contract
  * @dev This implements Chainlink VRF V2 and Chainlink Keepers
  */
-contract Raffle is VRFConsumerBaseV2, AutomationCompatibleInterface {
+contract Raffle is VRFConsumerBaseV2, KeeperCompatible {
     /* Types */
     enum RaffleState {
         OPEN,
@@ -76,7 +76,7 @@ contract Raffle is VRFConsumerBaseV2, AutomationCompatibleInterface {
     }
 
     /**
-     * @dev This is the function that Chainlink Keeper nodes call as they look for tge
+     * @dev This is the function that Chainlink Keeper nodes call as they look for the
      * 'checkUpkeep()' to return true.
      * Following should be true in order to return true:
      * 1. Our time inerval should have passed

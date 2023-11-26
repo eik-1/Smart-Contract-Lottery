@@ -44,5 +44,12 @@ module.exports = {
     },
     etherscan: {
         apiKey: ETHERSCAN_API,
+        customChains: [
+            {
+                name: "sepolia",
+                url: SEPOLIA_RPC_URL,
+                chainId: 1337,
+            },
+        ],
     },
 }
