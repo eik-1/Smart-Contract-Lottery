@@ -1,6 +1,6 @@
 const { network, ethers, deployments, getNamedAccounts } = require("hardhat")
 const { developmentChains } = require("../../helper-hardhat-config")
-const { assert } = require("chai")
+const { assert, expect } = require("chai")
 
 !developmentChains.includes(network.name)
     ? describe.skip
@@ -18,6 +18,14 @@ const { assert } = require("chai")
               it("initializes the raffle correctly", async () => {
                   const raffleState = await raffle.getRaffleState()
                   assert.equal(raffleState.toString(), "0")
+              })
+          })
+
+          describe("enter raffle", () => {
+              it("reverts when you don't pay enough", async () => {
+                  await expect(raffle.enterRaffle()).to.be.revertedWith(
+                      "Raffle__NotEnoughETHEntered",
+                  )
               })
           })
       })
