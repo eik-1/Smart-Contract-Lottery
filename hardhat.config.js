@@ -13,7 +13,16 @@ const COINMARKET_API = process.env.COINMARKET_API
 
 /** @type import('hardhat/config').HardhatUserConfig */
 module.exports = {
-    solidity: "0.8.19",
+    solidity: {
+        compilers: [
+            {
+                version: "0.8.8",
+            },
+            {
+                version: "0.4.24",
+            },
+        ],
+    },
     defaultNetwork: "hardhat",
     networks: {
         hardhat: {
@@ -25,6 +34,7 @@ module.exports = {
             accounts: [SEPOLIA_PRIVATE_KEY],
             chainId: 11155111,
             blockConfirmations: 6,
+            saveDeployments: true,
         },
     },
     gasReporter: {
@@ -37,6 +47,7 @@ module.exports = {
     namedAccounts: {
         deployer: {
             default: 0,
+            1: 0,
         },
         player: {
             default: 1,
