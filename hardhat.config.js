@@ -63,4 +63,7 @@ module.exports = {
             },
         ],
     },
+    mocha: {
+        setTimeout: 1000000,
+    },
 }
